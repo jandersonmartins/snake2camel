@@ -16,9 +16,13 @@ func ConvertToCamel(snake string) string {
 			break
 		}
 		char := string(snake[i])
-		if char == SNAKE_CHAR {
-			char = string(snake[i+1])
-			buff.WriteString(strings.ToUpper(char))
+		if char == SNAKE_CHAR && i > 0 {
+			nextI := i + 1
+			if nextI >= size {
+				break
+			}
+			nextChar := string(snake[nextI])
+			buff.WriteString(strings.ToUpper(nextChar))
 			i = i + 2
 		} else {
 			buff.WriteString(char)

@@ -11,10 +11,32 @@ func TestConvertToCamel(t *testing.T) {
 		got := ConvertToCamel(snake)
 		want := "helloWorld"
 
-		if got != want {
-			t.Errorf("got %q want %q", got, want)
-		}
+		checkStrings(t, got, want)
 	})
+
+	t.Run("word ending with snake char", func(t *testing.T) {
+		snake := "hello_world_"
+		got := ConvertToCamel(snake)
+		want := "helloWorld"
+
+		checkStrings(t, got, want)
+	})
+
+	t.Run("word started with snake char", func(t *testing.T) {
+		snake := "_hello_world"
+		got := ConvertToCamel(snake)
+		want := "_helloWorld"
+
+		checkStrings(t, got, want)
+	})
+}
+
+func checkStrings(t testing.TB, got, want string) {
+	t.Helper()
+
+	if got != want {
+		t.Errorf("got %q want %q", got, want)
+	}
 }
 
 func ExampleConvertToCamel() {
