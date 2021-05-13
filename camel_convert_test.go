@@ -1,4 +1,4 @@
-package s2c
+package snake2camel
 
 import (
 	"fmt"
