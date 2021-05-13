@@ -29,6 +29,25 @@ func TestConvertToCamel(t *testing.T) {
 
 		checkStrings(t, got, want)
 	})
+
+	t.Run("convert a large text", func(t *testing.T) {
+		text := `
+			function foo() {
+				const user_name = "example"
+				const user_age = 10
+			}
+		`
+
+		got := ConvertToCamel(text)
+		want := `
+			function foo() {
+				const userName = "example"
+				const userAge = 10
+			}
+		`
+
+		checkStrings(t, got, want)
+	})
 }
 
 func checkStrings(t testing.TB, got, want string) {
@@ -48,6 +67,9 @@ func ExampleConvertToCamel() {
 
 func BenchmarkConvertToCamel(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		ConvertToCamel("hello_world")
+		ConvertToCamel(`
+			lorem ipsum
+			foo_bar example
+		`)
 	}
 }
