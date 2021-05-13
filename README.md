@@ -2,4 +2,10 @@
 
 Convert snake case strings to camel case :)
 
-## TODO
+## Usage
+
+From source:
+
+```sh
+$ go run cmd/main.go /path-to-file.txt
+```
